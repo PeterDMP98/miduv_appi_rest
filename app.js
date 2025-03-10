@@ -16,6 +16,8 @@ app.use(cors({
             'http://localhost:8080',
             'https://movies.com',
             'https://midu.com',
+            'http://127.0.0.1:5500',
+            'https://apirestmidudev.netlify.app/'
         ]
 
         if (ACCEPTED_ORIGINS.includes(origin)) {
