@@ -8,12 +8,45 @@ const { validateMovie, validarPartialMovie } = require('./schemas/movies');
 const app = express();
 app.use(express.json())
 
-app.use(cors('*'))
+app.use(cors({
+    origin: (origin, callback) => {
+        const ACCEPTED_ORIGINS = [
+            'http://localhost:5500',
+            'http://localhost:1234',
+            'http://localhost:8080',
+            'https://movies.com',
+            'https://midu.com',
+            
+        ]
+
+        if (ACCEPTED_ORIGINS.includes(origin)) {
+            return callback(null, true)
+        }
+
+        if (!origin) {
+            return callback(null, true)
+        }
+
+        return callback(new Error('Not allowed by CORS'))
+    }
+}))
 
 app.disable('x-powered-by'); // desabilita la cabecera x-powered-by
 
 
 // todos los recursos que sean MOVIES se identifica con /movies
+
+app.get('/', (req, res) => {
+
+    const {genre} = req.query
+    if (genre) {
+        const filterMovies = movies.filter(movie => movie.genre.some(g => g.toLowerCase() === genre.toLowerCase()))
+        return res.json(filterMovies)
+    }
+    res.json(movies)
+})
+
+
 app.get('/movies', (req, res) => {
 
     const {genre} = req.query
