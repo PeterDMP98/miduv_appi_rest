@@ -35,18 +35,6 @@ app.disable('x-powered-by'); // desabilita la cabecera x-powered-by
 
 
 // todos los recursos que sean MOVIES se identifica con /movies
-
-app.get('/', (req, res) => {
-
-    const {genre} = req.query
-    if (genre) {
-        const filterMovies = movies.filter(movie => movie.genre.some(g => g.toLowerCase() === genre.toLowerCase()))
-        return res.json(filterMovies)
-    }
-    res.json(movies)
-})
-
-
 app.get('/movies', (req, res) => {
 
     const {genre} = req.query
