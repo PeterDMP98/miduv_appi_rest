@@ -1,7 +1,8 @@
 const express = require('express'); // requiere -> commonJS
+const cors = require('cors');
 const movies = require('./movies.json');
 const crypto = require('node:crypto')
-const z = require('zod');
+
 const { validateMovie, validarPartialMovie } = require('./schemas/movies');
 
 const app = express();
