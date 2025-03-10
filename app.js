@@ -16,7 +16,8 @@ const ACCEPTED_ORIGINS = [
     'https://myapp.com',
     'https://movies.com',
     'https://midu.dev.com',
-    'http://127.0.0.1:5500'
+    'http://127.0.0.1:5500',
+    'https://apirestmidudev.netlify.app/'
 ]
 
 // todos los recursos que sean MOVIES se identifica con /movies
