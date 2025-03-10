@@ -8,29 +8,7 @@ const { validateMovie, validarPartialMovie } = require('./schemas/movies');
 const app = express();
 app.use(express.json())
 
-app.use(cors({
-    origin: (origin, callback) => {
-        const ACCEPTED_ORIGINS = [
-            'http://localhost:5500',
-            'http://localhost:1234',
-            'http://localhost:8080',
-            'https://movies.com',
-            'https://midu.com',
-            'http://127.0.0.1:5500',
-            'https://apirestmidudev.netlify.app/'
-        ]
-
-        if (ACCEPTED_ORIGINS.includes(origin)) {
-            return callback(null, true)
-        }
-
-        if (!origin) {
-            return callback(null, true)
-        }
-
-        return callback(new Error('Not allowed by CORS'))
-    }
-}))
+app.use(cors('*'))
 
 app.disable('x-powered-by'); // desabilita la cabecera x-powered-by
 
